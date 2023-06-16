@@ -6,35 +6,32 @@
 package ca.sheridancollege.project;
 
 
-/**
- * The class that models your game. You should create a more specific child of this class and instantiate the methods
- * given.
- *
- * @author chanowat
- */
-public class Game {
+import java.util.ArrayList;
+abstract class Game {
 
-    private final Player player1;
-    private final Player player2;
+    private final String name;
+    private ArrayList<Player> players;
 
-    public Game() {
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+    public Game(String name) {
+        this.name = name;
+        players = new ArrayList<>();
     }
 
-    public void play() {
-        // Implement play method.
+    public String getName() {
+        return name;
     }
 
-    private void dealCards(GroupOfCards deck) {
-        // implement dealCards method.
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
-    private int compareCards(Card card1, Card card2) {
-        // Compare cards rank
-        
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
-    private void handleWar(GroupOfCards deck) {
-        // Implement warcard games
 
-}//end class
+    public abstract void play();
+
+    public abstract void declareWinner();
+}
+
+
