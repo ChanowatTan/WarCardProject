@@ -5,31 +5,32 @@
  */
 package ca.sheridancollege.project;
 
-/**
- * A class to be used as the base Card class for the project. Must be general enough to be instantiated for any Card
- * game. Students wishing to add to the code should remember to add themselves as a modifier.
- *
- * @author chanowat 15 Jun
- */
-public class Card {
-    private final String suit;
-    private final String rank;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-    public Card(String suit, String rank) {
+abstract class Card {
+    private final String suit;
+    private final int value;
+
+    public Card(String suit, int value) {
         this.suit = suit;
-        this.rank = rank;
+        this.value = value;
     }
 
     public String getSuit() {
         return suit;
     }
 
-    public String getRank() {
-        return rank;
+    public int getValue() {
+        return value;
     }
-    
+
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        return value + " of " + suit;
     }
 }
+
+
+
