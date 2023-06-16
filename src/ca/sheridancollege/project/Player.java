@@ -5,16 +5,17 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
  *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
+ * @author chanowat 15 Jun
  */
-public abstract class Player {
-
-    private String name; //the unique name for this player
-
+public class Player {
+    private final String name;
+    private final List<Card> cards;
     /**
      * A constructor that allows you to set the player's unique ID
      *
@@ -22,6 +23,7 @@ public abstract class Player {
      */
     public Player(String name) {
         this.name = name;
+        this.cards = new ArrayList<>();    
     }
 
     /**
@@ -31,19 +33,30 @@ public abstract class Player {
         return name;
     }
 
-    /**
-     * Ensure that the playerID is unique
-     *
-     * @param name the player name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
-    /**
-     * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
-     * with logic to play your game.
-     */
-    public abstract void play();
+    public Card playCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
+        return cards.remove(0);
+    }
 
+    public boolean hasCards() {
+        return !cards.isEmpty();
+    }
+
+    public void clearCards() {
+        cards.clear();
+    }
+
+    public void addCards(List<Card> cardsToAdd) {
+        cards.addAll(cardsToAdd);
+    }
+    
+    public int getCardCount() {
+        return cards.size();
+    }
 }
