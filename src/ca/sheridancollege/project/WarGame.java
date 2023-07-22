@@ -1,9 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ca.sheridancollege.project;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +8,8 @@ public class WarGame extends Game {
     private GroupOfCards deck;
     private GroupOfCards player1Cards;
     private GroupOfCards player2Cards;
+
+    private final int totalRounds = 4;  //(Add new) Set round limit = 4
 
     public WarGame() {
         super("War");
@@ -81,20 +77,60 @@ public class WarGame extends Game {
             }
 
             round++;
-            System.out.println("Player 1 cards: " + player1Cards.getCards().size());
-            System.out.println("Player 2 cards: " + player2Cards.getCards().size());
-            System.out.println();
+            if (round > totalRounds) {      //(Add new) A condition to end the game within 4 rounds
+                gameEnded = true;
+            }
         }
+
+        //(Add new) Call method
+        calculateTotalScores();
     }
 
+
+
+    //(Add new) Method to calculate players' total scores after four rounds
+    private void calculateTotalScores() {
+        int player1Score = player1Cards.getCards().size();
+        int player2Score = player2Cards.getCards().size();
+
+        getPlayer("Player 1").setScore(player1Score);
+        getPlayer("Player 2").setScore(player2Score);
+    }
+
+
+
+
+    //(Add new) method object return player name
+    private Player getPlayer(String name) {
+        for (Player player : getPlayers()) {
+            if (player.getName().equals(name)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+    //(Add new) Modify this method to compare base on the score,
+    // not base on the previous condition that a player has empty card.
     @Override
     public void declareWinner() {
-        if (player1Cards.getCards().isEmpty()) {
+        int player1Score = getPlayer("Player 1").getScore();
+        int player2Score = getPlayer("Player 2").getScore();
+
+        System.out.println("Player 1 total score: " + player1Score);
+        System.out.println("Player 2 total score: " + player2Score);
+
+        if (player1Score > player2Score) {
+            System.out.println("Player 1 wins the game!");
+        } else if (player2Score > player1Score) {
             System.out.println("Player 2 wins the game!");
         } else {
-            System.out.println("Player 1 wins the game!");
+            System.out.println("It's a tie!");
         }
     }
 }
-
 

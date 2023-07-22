@@ -1,26 +1,23 @@
-/**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
- */
-package ca.sheridancollege.project;
-
-
 class Player {
     private String name;
+    private int score;      //(Add new) score field
 
     public Player(String name) {
         this.name = name;
+        this.score = 0;     //(Add new) Set score from 0
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getScore() {  //(Add new) Set score methods
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
-
 
 

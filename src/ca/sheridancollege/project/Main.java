@@ -1,5 +1,3 @@
-package ca.sheridancollege.project;
-
 import java.util.ArrayList;
 
 public class Main {
@@ -13,4 +11,5 @@ public class Main {
         warGame.declareWinner();
     }
 }
+
 
