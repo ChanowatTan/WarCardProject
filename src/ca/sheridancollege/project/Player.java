@@ -1,17 +1,19 @@
+package ca.sheridancollege.project;
+
 class Player {
     private String name;
-    private int score;      //(Add new) score field
+    private int score;
 
     public Player(String name) {
         this.name = name;
-        this.score = 0;     //(Add new) Set score from 0
+        this.score = 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getScore() {  //(Add new) Set score methods
+    public int getScore() {
         return score;
     }
 
